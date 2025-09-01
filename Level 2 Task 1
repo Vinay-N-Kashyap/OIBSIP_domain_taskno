@@ -1,0 +1,303 @@
+\\Task 1 Calculater \\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .display {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            text-align: right;
+        }
+
+        .display-input {
+            font-size: 1.2em;
+            color: #bdc3c7;
+            margin-bottom: 10px;
+            min-height: 25px;
+        }
+
+        .display-result {
+            font-size: 2.5em;
+            font-weight: bold;
+            min-height: 60px;
+            overflow: hidden;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #ecf0f1;
+        }
+
+        .btn {
+            border: none;
+            padding: 25px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .btn:hover {
+            background: #f8f9fa;
+            transform: scale(0.95);
+        }
+
+        .btn:active {
+            transform: scale(0.9);
+        }
+
+        .btn-operator {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-operator:hover {
+            background: #2980b9;
+        }
+
+        .btn-equals {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-equals:hover {
+            background: #c0392b;
+        }
+
+        .btn-clear {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="title">Simple Calculator</div>
+        <div class="calculator">
+            <div class="display">
+                <div class="display-input" id="input-display"></div>
+                <div class="display-result" id="result-display">0</div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-clear" onclick="clearAll()">C</button>
+                <button class="btn btn-clear" onclick="clearEntry()">CE</button>
+                <button class="btn btn-operator" onclick="appendOperator('/')">&divide;</button>
+                <button class="btn btn-operator" onclick="appendOperator('*')">&times;</button>
+                
+                <button class="btn" onclick="appendNumber('7')">7</button>
+                <button class="btn" onclick="appendNumber('8')">8</button>
+                <button class="btn" onclick="appendNumber('9')">9</button>
+                <button class="btn btn-operator" onclick="appendOperator('-')">-</button>
+                
+                <button class="btn" onclick="appendNumber('4')">4</button>
+                <button class="btn" onclick="appendNumber('5')">5</button>
+                <button class="btn" onclick="appendNumber('6')">6</button>
+                <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+                
+                <button class="btn" onclick="appendNumber('1')">1</button>
+                <button class="btn" onclick="appendNumber('2')">2</button>
+                <button class="btn" onclick="appendNumber('3')">3</button>
+                <button class="btn btn-equals" onclick="calculate()" rowspan="2">=</button>
+                
+                <button class="btn btn-zero" onclick="appendNumber('0')">0</button>
+                <button class="btn" onclick="appendDecimal()">.</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let previousInput = '';
+        let operator = '';
+        let shouldResetDisplay = false;
+
+        const inputDisplay = document.getElementById('input-display');
+        const resultDisplay = document.getElementById('result-display');
+
+        // Update the display
+        function updateDisplay() {
+            inputDisplay.textContent = previousInput + operator + currentInput;
+            resultDisplay.textContent = currentInput || '0';
+        }
+
+        // Append number to current input
+        function appendNumber(number) {
+            if (shouldResetDisplay) {
+                currentInput = '';
+                shouldResetDisplay = false;
+            }
+            
+            if (currentInput.length < 10) {
+                currentInput += number;
+                updateDisplay();
+            }
+        }
+
+        // Append decimal point
+        function appendDecimal() {
+            if (shouldResetDisplay) {
+                currentInput = '0';
+                shouldResetDisplay = false;
+            }
+            
+            if (currentInput === '') {
+                currentInput = '0';
+            }
+            
+            if (!currentInput.includes('.')) {
+                currentInput += '.';
+                updateDisplay();
+            }
+        }
+
+        // Append operator
+        function appendOperator(op) {
+            if (currentInput === '' && previousInput === '') return;
+            
+            if (previousInput !== '' && currentInput !== '' && operator !== '') {
+                calculate();
+            }
+            
+            if (currentInput !== '') {
+                previousInput = currentInput;
+                currentInput = '';
+            }
+            
+            operator = op;
+            shouldResetDisplay = false;
+            updateDisplay();
+        }
+
+        // Perform calculation
+        function calculate() {
+            if (previousInput === '' || currentInput === '' || operator === '') return;
+            
+            let prev = parseFloat(previousInput);
+            let current = parseFloat(currentInput);
+            let result;
+
+            // Using if-else statements for operations
+            if (operator === '+') {
+                result = prev + current;
+            } else if (operator === '-') {
+                result = prev - current;
+            } else if (operator === '*') {
+                result = prev * current;
+            } else if (operator === '/') {
+                if (current === 0) {
+                    alert('Cannot divide by zero!');
+                    return;
+                }
+                result = prev / current;
+            }
+
+            // Round result to avoid floating point issues
+            result = Math.round(result * 100000000) / 100000000;
+            
+            currentInput = result.toString();
+            previousInput = '';
+            operator = '';
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        // Clear all
+        function clearAll() {
+            currentInput = '';
+            previousInput = '';
+            operator = '';
+            shouldResetDisplay = false;
+            updateDisplay();
+        }
+
+        // Clear current entry
+        function clearEntry() {
+            currentInput = '';
+            updateDisplay();
+        }
+
+        // Keyboard support using event listeners
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            
+            // Numbers
+            if (key >= '0' && key <= '9') {
+                appendNumber(key);
+            }
+            // Operators
+            else if (key === '+' || key === '-' || key === '*' || key === '/') {
+                appendOperator(key);
+            }
+            // Decimal point
+            else if (key === '.') {
+                appendDecimal();
+            }
+            // Enter or equals
+            else if (key === 'Enter' || key === '=') {
+                event.preventDefault();
+                calculate();
+            }
+            // Escape or C for clear
+            else if (key === 'Escape' || key.toLowerCase() === 'c') {
+                clearAll();
+            }
+            // Backspace for clear entry
+            else if (key === 'Backspace') {
+                clearEntry();
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
