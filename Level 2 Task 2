@@ -1,0 +1,239 @@
+\\ Tribute Page \\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marie Curie - A Scientific Pioneer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .profile-image {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .achievements {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .achievements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .achievements li {
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+
+        .achievements li::before {
+            content: "🏆 ";
+            margin-right: 10px;
+        }
+
+        .quote {
+            background: #3498db;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2em;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .quote::after {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Marie Curie</h1>
+            <p>Pioneer of Science & Inspiration to Millions</p>
+        </div>
+
+        <div class="profile-image">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Marie_Curie_c._1920s.jpg" alt="Marie Curie">
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Why I Admire Marie Curie</h2>
+                <p>
+                    Marie Curie stands as one of the most <span class="highlight">remarkable figures</span> in human history. Her unwavering dedication to science, groundbreaking discoveries, and resilience in the face of adversity continue to inspire people worldwide. What I find most admirable about her is not just her scientific achievements, but her determination to pursue knowledge despite the countless obstacles she faced as a woman in science during the early 20th century.
+                </p>
+                <p>
+                    Her story teaches us that passion, perseverance, and curiosity can overcome any barrier. She didn't just break glass ceilings; she <span class="highlight">shattered them completely</span>, paving the way for future generations of women in science.
+                </p>
+            </div>
+
+            <div class="quote">
+                Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.
+            </div>
+
+            <div class="section">
+                <h2>Her Extraordinary Journey</h2>
+                <p>
+                    Born in Warsaw in 1867, Marie Curie's journey to becoming a <span class="highlight">two-time Nobel Prize winner</span> was filled with challenges. She moved to Paris to pursue her education, living in poverty but never losing sight of her dreams. Her discovery of polonium and radium revolutionized our understanding of physics and chemistry.
+                </p>
+                <p>
+                    What truly sets her apart is her selfless dedication to science. During World War I, she developed mobile X-ray units to help wounded soldiers, showing that her brilliance was matched by her compassion for humanity.
+                </p>
+            </div>
+
+            <div class="section">
+                <div class="achievements">
+                    <h2>Historic Achievements</h2>
+                    <ul>
+                        <li>First woman to win a Nobel Prize (Physics, 1903)</li>
+                        <li>First person to win Nobel Prizes in two different sciences (Chemistry, 1911)</li>
+                        <li>Discovered two new elements: Polonium and Radium</li>
+                        <li>Founded the Radium Institute in Paris and Warsaw</li>
+                        <li>Pioneered research on radioactivity (a term she coined)</li>
+                        <li>Saved countless lives with mobile X-ray units during WWI</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>A Lasting Legacy</h2>
+                <p>
+                    Marie Curie's impact extends far beyond her scientific discoveries. She proved that <span class="highlight">gender should never limit one's potential</span>. Her dedication to sharing knowledge freely, her ethical approach to research, and her belief in science as a force for good continue to inspire scientists today.
+                </p>
+                <p>
+                    Her laboratory notebooks are still radioactive and will remain so for another 1,500 years – a lasting testament to her groundbreaking work. But more importantly, her spirit of inquiry and determination will inspire humanity for generations to come.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Marie Curie (1867-1934) - A brilliant mind that illuminated the world through science</p>
+        </div>
+    </div>
+</body>
+</html>
